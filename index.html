@@ -19,258 +19,389 @@
             font-family: "Sora", serif;
             font-weight: 300;
         }
+
+        /* 3D card views  */
+        #card3d {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+
+        }
+
+        .container {
+            position: relative;
+            width: 200px;
+            height: 300px;
+            --item-no: 3;
+            /* make for divide 360deg to the total item number and make each item space equal degree automatically */
+            transform-style: preserve-3d;
+            animation: animate 15s linear infinite;
+            background-position: center;
+            background-size: contain;
+            /* background-repeat: no-repeat; */
+            margin: 15% 0;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: perspective(1000px) rotateY(0deg);
+            }
+
+            100% {
+                transform: perspective(1000px) rotateY(360deg);
+            }
+        }
+
+        .container div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform: rotateY(calc(var(--i) * (360/var(--item-no)) * 1deg)) translateZ(200px);
+            -webkit-box-reflect: below 2px linear-gradient(transparent, transparent, rgba(4, 4, 4, 0.267));
+            filter: drop-shadow(0 0 10px #FFDC26);
+        }
+
+        .container div img {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            border: 4px double yellow;
+        }
+
     </style>
 </head>
 
-<body class="pl-[10vw] pr-[7vw]">
-    <!-- navbar -->
-    <nav class="bg-[#FFF9F4] sora-font py-[1.8vw] ml-[-10vw] mr-[-7vw] mb-[6vw] px-[10vw]">
-        <div class="navitems sora-font flex justify-between items-center">
-            <div class="logo flex items-center gap-[1vw]">
-                <img class="size-[3vw]" src="c1-assets/logo-header.png" alt="It's logo">
-                <h1 class="text-[1.7vw]">Browse<span class="text-[#FFDC26]">4</span>Pets</h1>
-            </div>
-            <div class="flex gap-[1vw] text-[1.3vw] pl-[10vw]">
-                <h5>Find a Pet</h5>
-                <h5>Breeds</h5>
-                <h5>Contact us</h5>
-            </div>
-            <div class="flex items-center gap-[1vw] text-[1.3vw]">
-                <img class="size-[1.5vw]" src="c1-assets/notification-icon.svg" alt=""><img class="size-[1.5vw]"
-                    src="c1-assets/seacch-icon.svg" alt=""><button
-                    class="border border-yellow-400 rounded-[10px] px-[1.8vw] py-[0.5vw]">Login</button><button
-                    class="bg-[#FFDC26] rounded-[10px] px-[1.8vw] py-[0.5vw]">Register</button>
-            </div>
+<body class="px-[2vw] sm:pl-[8vw] sm:pr-[5vw] ">
+    <!-- Navbar -->
+    <nav
+        class="bg-[#FFF9F4] sora-font py-[1.8vw] sm:ml-[-8vw] mx-[-2vw] px-[2vw] sm:mr-[-5vw] sm:pl-[8vw] sm:pr-[5vw] flex justify-between items-center">
+        <div class="logo flex items-center gap-[1vw]">
+            <img class="w-[6vw] sm:size-[3vw]" src="c1-assets/logo-header.png" alt="Logo">
+            <h1 class="text-[4vw] sm:text-[1.7vw]">Browse<span class="text-[#FFDC26]">4</span>Pets</h1>
+        </div>
+
+        <!-- Mobile Menu Icon (Only visible on mobile) -->
+        <div class="block sm:hidden">
+            <img src="c1-assets/menu.svg" class="w-[6vw]" alt="Menu">
+        </div>
+
+        <!-- Desktop Navbar (Hidden on Mobile) -->
+        <div class="hidden sm:flex gap-[1vw] text-[1.3vw] pl-[10vw]">
+            <h5>Find a Pet</h5>
+            <h5>Breeds</h5>
+            <h5>Contact us</h5>
+        </div>
+
+        <div class="hidden sm:flex items-center gap-[1vw] text-[1.3vw]">
+            <img class="size-[1.5vw]" src="c1-assets/notification-icon.svg" alt="">
+            <img class="size-[1.5vw]" src="c1-assets/seacch-icon.svg" alt="">
+            <button class="border border-yellow-400 rounded-[10px] px-[1.8vw] py-[0.5vw]">Login</button>
+            <button class="bg-[#FFDC26] rounded-[10px] px-[1.8vw] py-[0.5vw]">Register</button>
         </div>
     </nav>
+
     <!-- navbar finish -->
 
     <!-- hero section  -->
     <section>
-        <div class="bg-[url(c1-assets/cat-big.png)] bg-no-repeat bg-cover bg-br">
-            <h1 class="text-[3.7vw]/[4.5vw] adlam-font">Pamper Your Pet,<br> Because They Deserve <br> the Bes</h1>
-            <p class="text-[1.5vw] my-[1.8vw] text-[#111111aa]">Discover a world of treats, toys, and essentials
-                handpicked for <br> your furry friends. Shop now and make tails wag with joy!</p>
-            <button class="bg-[#FFDC26] rounded-[10px] px-[2vw] py-[0.5vw] text-[1.3vw] mb-[20vw]">Find a pet</button>
+        <div class="bg-[url(c1-assets/cat-big.png)] bg-no-repeat bg-contain bg-right-bottom">
+            <h1 class="text-[6vw]/[7vw] sm:text-[3.7vw]/[4.5vw] adlam-font">
+                Pamper Your Pet,<br> Because They Deserve <br> the Best
+            </h1>
+            <p class="text-[2.5vw] sm:text-[1.5vw] my-[3vw] text-[#111111aa]">
+                Discover a world of treats, toys, and essentials handpicked for <br>
+                your furry friends. Shop now and make tails wag with joy!
+            </p>
+            <button class="bg-[#FFDC26] rounded-[10px] px-[4vw] py-[1.5vw] text-[3vw] sm:text-[1.3vw] mb-[20vw]">
+                Find a pet
+            </button>
         </div>
     </section>
     <!-- hero section finish  -->
 
     <!-- category section  -->
     <section class="mt-[8vw]">
-        <h1 class="text-[2.5vw] adlam-font mb-[2vw]">Browse By Categories</h1>
-        <div class="grid grid-cols-6 justify-between mb-[8vw] gap-[1vw]">
-            <div class="bg-[#F9DF8A] rounded-[10px] text-center px-[3vw] py-[2vw]">
-                <img class="bg-white rounded-full p-[1.5vw]" src="c1-assets/dog-cartoon.png" alt="">
-                <h4 class="adlam-font mt-[1.2vw] text-[1.3vw]">Dog</h4>
-                <p class="mt-[0.1vw] sora-font text-[1.2vw]">3 items</p>
+        <h1 class="text-[5vw] sm:text-[2.5vw] adlam-font mb-[4vw] text-center">Browse By Categories</h1>
+        <div class="grid grid-cols-2 sm:grid-cols-6 gap-[3vw] sm:gap-[1vw] mb-[8vw]">
+            <div class="bg-[#F9DF8A] rounded-[10px] text-center px-[5vw] py-[4vw] sm:px-[3vw] sm:py-[2vw]">
+                <img class="bg-white rounded-full p-[3vw] sm:p-[1.5vw] justify-self-center"
+                    src="c1-assets/dog-cartoon.png" alt="">
+                <h4 class="adlam-font mt-[2vw] sm:mt-[1.2vw] text-[3vw] sm:text-[1.3vw]">Dog</h4>
+                <p class="mt-[0.5vw] sm:mt-[0.1vw] sora-font text-[2.5vw] sm:text-[1.2vw]">3 items</p>
             </div>
-            <div class="bg-[#F9DF8A] rounded-[10px] text-center px-[3vw] py-[2vw]">
-                <img class="bg-white rounded-full p-[1.5vw]" src="c1-assets/cat-cartoon.png" alt="">
-                <h4 class="adlam-font mt-[1.2vw] text-[1.3vw]">Cat</h4>
-                <p class="mt-[0.1vw] sora-font text-[1.2vw]">3 items</p>
+            <div class="bg-[#F9DF8A] rounded-[10px] text-center px-[5vw] py-[4vw] sm:px-[3vw] sm:py-[2vw]">
+                <img class="bg-white rounded-full p-[3vw] sm:p-[1.5vw] justify-self-center"
+                    src="c1-assets/cat-cartoon.png" alt="">
+                <h4 class="adlam-font mt-[2vw] sm:mt-[1.2vw] text-[3vw] sm:text-[1.3vw]">Cat</h4>
+                <p class="mt-[0.5vw] sm:mt-[0.1vw] sora-font text-[2.5vw] sm:text-[1.2vw]">3 items</p>
             </div>
-            <div class="bg-[#F9DF8A] rounded-[10px] text-center px-[3vw] py-[2vw]">
-                <img class="bg-white rounded-full p-[1.5vw]" src="c1-assets/fish-cartoon.png" alt="">
-                <h4 class="adlam-font mt-[1.2vw] text-[1.3vw]">Fish</h4>
-                <p class="mt-[0.1vw] sora-font text-[1.2vw]">4 items</p>
+            <div class="bg-[#F9DF8A] rounded-[10px] text-center px-[5vw] py-[4vw] sm:px-[3vw] sm:py-[2vw]">
+                <img class="bg-white rounded-full p-[3vw] sm:p-[1.5vw] justify-self-center"
+                    src="c1-assets/fish-cartoon.png" alt="">
+                <h4 class="adlam-font mt-[2vw] sm:mt-[1.2vw] text-[3vw] sm:text-[1.3vw]">Fish</h4>
+                <p class="mt-[0.5vw] sm:mt-[0.1vw] sora-font text-[2.5vw] sm:text-[1.2vw]">4 items</p>
             </div>
-            <div class="bg-[#F9DF8A] rounded-[10px] text-center px-[3vw] py-[2vw]">
-                <img class="bg-white rounded-full p-[1.5vw]" src="c1-assets/bird-cartoon.png" alt="">
-                <h4 class="adlam-font mt-[1.2vw] text-[1.3vw]">Birds</h4>
-                <p class="mt-[0.1vw] sora-font text-[1.2vw]">5 items</p>
+            <div class="bg-[#F9DF8A] rounded-[10px] text-center px-[5vw] py-[4vw] sm:px-[3vw] sm:py-[2vw]">
+                <img class="bg-white rounded-full p-[3vw] sm:p-[1.5vw] justify-self-center"
+                    src="c1-assets/bird-cartoon.png" alt="">
+                <h4 class="adlam-font mt-[2vw] sm:mt-[1.2vw] text-[3vw] sm:text-[1.3vw]">Birds</h4>
+                <p class="mt-[0.5vw] sm:mt-[0.1vw] sora-font text-[2.5vw] sm:text-[1.2vw]">5 items</p>
             </div>
-            <div class="bg-[#F9DF8A] rounded-[10px] text-center px-[3vw] py-[2vw]">
-                <img class="bg-white rounded-full p-[1.5vw]" src="c1-assets/mouse-cartoon.png" alt="">
-                <h4 class="adlam-font mt-[1.2vw] text-[1.3vw]">Small pet</h4>
-                <p class="mt-[0.1vw] sora-font text-[1.2vw]">3 items</p>
+            <div class="bg-[#F9DF8A] rounded-[10px] text-center px-[5vw] py-[4vw] sm:px-[3vw] sm:py-[2vw]">
+                <img class="bg-white rounded-full p-[3vw] sm:p-[1.5vw] justify-self-center"
+                    src="c1-assets/mouse-cartoon.png" alt="">
+                <h4 class="adlam-font mt-[2vw] sm:mt-[1.2vw] text-[3vw] sm:text-[1.3vw]">Small Pet</h4>
+                <p class="mt-[0.5vw] sm:mt-[0.1vw] sora-font text-[2.5vw] sm:text-[1.2vw]">3 items</p>
             </div>
-            <div class="bg-[#F9DF8A] rounded-[10px] text-center px-[3vw] py-[2vw]">
-                <img class="bg-white rounded-full p-[1.5vw]" src="c1-assets/rabbit-cartoon.png" alt="">
-                <h4 class="adlam-font mt-[1.2vw] text-[1.3vw]">Rabbit</h4>
-                <p class="mt-[0.1vw] sora-font text-[1.2vw]">2 items</p>
+            <div class="bg-[#F9DF8A] rounded-[10px] text-center px-[5vw] py-[4vw] sm:px-[3vw] sm:py-[2vw]">
+                <img class="bg-white rounded-full p-[3vw] sm:p-[1.5vw] justify-self-center"
+                    src="c1-assets/rabbit-cartoon.png" alt="">
+                <h4 class="adlam-font mt-[2vw] sm:mt-[1.2vw] text-[3vw] sm:text-[1.3vw]">Rabbit</h4>
+                <p class="mt-[0.5vw] sm:mt-[0.1vw] sora-font text-[2.5vw] sm:text-[1.2vw]">2 items</p>
             </div>
         </div>
     </section>
+
     <!-- category section finish  -->
 
     <!-- trending section  -->
-    <section class="bg-[#FFF9F4] ml-[-10vw] mr-[-7vw] pl-[10vw] pr-[7vw] py-[7vw] mb-[10vw]">
-        <h2 class="text-[2.5vw] adlam-font mb-[2vw]">Trending Pet Products</h2>
-        <div class=" grid grid-cols-[1.8fr_1fr_1fr_1fr] grid-rows-3 gap-[2vw]">
+    <section class="sm:bg-[#FFF9F4] sm:ml-[-8vw] sm:mr-[-5vw] pl-[10vw] pr-[7vw] py-[7vw]">
+        <h2 class="text-[6vw] sm:text-[2.5vw] adlam-font mb-[2vw]">Trending Pet Products</h2>
+        <div
+            class=" grid grid-cols-2 sm:grid-cols-[1.8fr_1fr_1fr_1fr] grid-rows-[1fr_1fr_1fr] sm:grid-rows-3 gap-[1.5vw] sm:gap-[1vw]">
             <div
-                class="bg-[url(c1-assets/cute-pet-small.png)] bg-no-repeat bg-contain bg-right-bottom bg-[#F9DF8A] row-span-3 py-[2vw] pl-[1.5vw] rounded-[10px]">
+                class="bg-[url(c1-assets/cute-pet-small.png)] bg-no-repeat bg-contain bg-right-bottom bg-[#F9DF8A] col-span-2 sm:col-span-1 row-span-3 py-[5vw] sm:py-[2vw] pl-[3vw] sm:pl-[1.5vw] rounded-[10px]">
                 <div class="">
-                    <h3 class="text-[2vw] adlam-font mb-[1vw]">T-Shirt For Dogs</h3>
-                    <h5 class="text-[#111111] text-[1.2vw]">Discover a world of treats, toys, and <br>essentials
-                        handpicked for </h5>
-                    <button class="bg-white px-[8%] py-[1.5%] rounded-[8px] mt-[1vw] text-[1.25vw]">Shop Now</button>
+                    <h3 class="text-[5vw] sm:text-[2vw] adlam-font mb-[1vw]">T-Shirt For Dogs</h3>
+                    <h5 class="text-[#111111] text-[3vw] sm:text-[1.2vw]">Discover a world of treats, toys, and
+                        <br>essentials handpicked for
+                    </h5>
+                    <button
+                        class="bg-white px-[10%] sm:px-[8%] py-[2.5%] sm:py-[1.5%] rounded-[8px] mt-[3vw] sm:mt-[1vw] text-[2vw] sm:text-[1.25vw] mb-[30vw] sm:mb-0">Shop
+                        Now</button>
                 </div>
             </div>
-            <div class="bg-white rounded-[10px] flex border border-[#1111111e] p-[1vw] text-[1.1vw]">
+
+            <!-- Cards -->
+            <div
+                class="bg-white rounded-[10px] flex items-center border border-[#1111111e] px-[2vw] sm:px-[1vw] sm:py-[0.5vw] text-[2vw] sm:text-[0.9vw]">
                 <div>
-                    <img class="bg-[#FFF9F4] rounded-[10px] py-[1vw] px-[0.8vw] mr-[1vw]"
+                    <img class="bg-[#FFF9F4] rounded-[10px] py-[2vw] sm:py-[1vw] px-[2vw] sm:px-[0.8vw] mr-[2vw] sm:mr-[1vw] w-[15vw] sm:w-[7vw]"
                         src="c1-assets/dog-cartoon.png" alt="">
                 </div>
                 <div class="sora-font">
-                    <span>5.0</span>
+                    <span class="flex items-center"><img class="w-[2vw] sm:w-[1.1vw] mr-[1vw]"
+                            src="c1-assets/rating.svg" alt=""><span>5.0</span></span>
                     <h3 class="font-bold">Dog bed</h3>
                     <h5>$49.99</h5>
                 </div>
             </div>
-            <div class="bg-white rounded-[10px] flex border border-[#1111111e] p-[1vw] text-[1.1vw]">
+
+            <div
+                class="bg-white rounded-[10px] flex items-center border border-[#1111111e] px-[2vw] sm:px-[1vw] sm:py-[0.5vw] text-[2vw] sm:text-[0.9vw]">
                 <div>
-                    <img class="bg-[#FFF9F4] rounded-[10px] py-[1vw] px-[0.8vw] mr-[1vw]"
+                    <img class="bg-[#FFF9F4] rounded-[10px] py-[2vw] sm:py-[1vw] px-[2vw] sm:px-[0.8vw] mr-[2vw] sm:mr-[1vw] w-[15vw] sm:w-[7vw]"
                         src="c1-assets/cat-cartoon.png" alt="">
                 </div>
                 <div class="sora-font">
-                    <span>4.9</span>
+                    <span class="flex items-center"><img class="w-[2vw] sm:w-[1.1vw] mr-[1vw]"
+                            src="c1-assets/rating.svg" alt=""><span>4.9</span></span>
                     <h3 class="font-bold">Cat bed</h3>
                     <h5>$44.99</h5>
                 </div>
             </div>
-            <div class="bg-white rounded-[10px] flex border border-[#1111111e] p-[1vw] text-[1.1vw]">
+
+            <div
+                class="bg-white rounded-[10px] flex items-center border border-[#1111111e] px-[2vw] sm:px-[1vw] sm:py-[0.5vw] text-[2vw] sm:text-[0.9vw]">
                 <div>
-                    <img class="bg-[#FFF9F4] rounded-[10px] py-[1vw] px-[0.8vw] mr-[1vw]"
+                    <img class="bg-[#FFF9F4] rounded-[10px] py-[2vw] sm:py-[1vw] px-[2vw] sm:px-[0.8vw] mr-[2vw] sm:mr-[1vw] w-[15vw] sm:w-[7vw]"
                         src="c1-assets/fish-cartoon.png" alt="">
                 </div>
                 <div class="sora-font">
-                    <span>4.7</span>
+                    <span class="flex items-center"><img class="w-[2vw] sm:w-[1.1vw] mr-[1vw]"
+                            src="c1-assets/rating.svg" alt=""><span>4.7</span></span>
                     <h3 class="font-bold">Fish Tank</h3>
                     <h5>$41.99</h5>
                 </div>
             </div>
-            <div class="bg-white rounded-[10px] flex border border-[#1111111e] p-[1vw] text-[1.1vw]">
+
+            <div
+                class="bg-white rounded-[10px] flex items-center border border-[#1111111e] px-[2vw] sm:px-[1vw] sm:py-[0.5vw] text-[2vw] sm:text-[0.9vw]">
                 <div>
-                    <img class="bg-[#FFF9F4] rounded-[10px] py-[1vw] px-[0.8vw] mr-[1vw]" src="c1-assets/pet-couch.png"
-                        alt="">
-                </div>
-                <div class="sora-font">
-                    <span>4.5</span>
-                    <h3 class="font-bold">Cat couch</h3>
-                    <h5>$39.99</h5>
-                </div>
-            </div>
-            <div class="bg-white rounded-[10px] flex border border-[#1111111e] p-[1vw] text-[1.1vw]">
-                <div>
-                    <img class="bg-[#FFF9F4] rounded-[10px] py-[1vw] px-[0.8vw] mr-[1vw]"
+                    <img class="bg-[#FFF9F4] rounded-[10px] py-[2vw] sm:py-[1vw] px-[2vw] sm:px-[0.8vw] mr-[2vw] sm:mr-[1vw] w-[15vw] sm:w-[7vw]"
                         src="c1-assets/bird-cartoon.png" alt="">
                 </div>
                 <div class="sora-font">
-                    <span>4.4</span>
+                    <span class="flex items-center"><img class="w-[2vw] sm:w-[1.1vw] mr-[1vw]"
+                            src="c1-assets/rating.svg" alt=""><span>4.4</span></span>
                     <h3 class="font-bold">Bird cage</h3>
                     <h5>$44.99</h5>
                 </div>
             </div>
-            <div class="bg-white rounded-[10px] flex border border-[#1111111e] p-[1vw] text-[1.1vw]">
+
+            <div
+                class="bg-white rounded-[10px] flex items-center border border-[#1111111e] px-[2vw] sm:px-[1vw] sm:py-[0.5vw] text-[2vw] sm:text-[0.9vw]">
                 <div>
-                    <img class="bg-[#FFF9F4] rounded-[10px] py-[1vw] px-[0.8vw] mr-[1vw]"
+                    <img class="bg-[#FFF9F4] rounded-[10px] py-[2vw] sm:py-[1vw] px-[2vw] sm:px-[0.8vw] mr-[2vw] sm:mr-[1vw] w-[15vw] sm:w-[7vw]"
+                        src="c1-assets/pet-couch.png" alt="">
+                </div>
+                <div class="sora-font">
+                    <span class="flex items-center"><img class="w-[2vw] sm:w-[1.1vw] mr-[1vw]"
+                            src="c1-assets/rating.svg" alt=""><span>4.5</span></span>
+                    <h3 class="font-bold">Cat couch</h3>
+                    <h5>$39.99</h5>
+                </div>
+            </div>
+
+            <div
+                class="bg-white rounded-[10px] flex items-center border border-[#1111111e] px-[2vw] sm:px-[1vw] sm:py-[0.5vw] text-[2vw] sm:text-[0.9vw]">
+                <div>
+                    <img class="bg-[#FFF9F4] rounded-[10px] py-[2vw] sm:py-[1vw] px-[2vw] sm:px-[0.8vw] mr-[2vw] sm:mr-[1vw] w-[15vw] sm:w-[7vw]"
                         src="c1-assets/rabbit-cartoon.png" alt="">
                 </div>
                 <div class="sora-font">
-                    <span>4.3</span>
+                    <span class="flex items-center"><img class="w-[2vw] sm:w-[1.1vw] mr-[1vw]"
+                            src="c1-assets/rating.svg" alt=""><span>4.3</span></span>
                     <h3 class="font-bold">Rabbit couch</h3>
                     <h5>$47.99</h5>
                 </div>
             </div>
-            <div class="bg-white rounded-[10px] flex border border-[#1111111e] p-[1vw] text-[1.1vw]">
+            <div
+                class="bg-white rounded-[10px] flex items-center border border-[#1111111e] px-[2vw] sm:px-[1vw] sm:py-[0.5vw] text-[2vw] sm:text-[0.9vw]">
                 <div>
-                    <img class="bg-[#FFF9F4] rounded-[10px] py-[1vw] px-[0.8vw] mr-[1vw]" src="c1-assets/pet-couch.png"
-                        alt="">
+                    <img class="bg-[#FFF9F4] rounded-[10px] py-[2vw] sm:py-[1vw] px-[2vw] sm:px-[0.8vw] mr-[2vw] sm:mr-[1vw] w-[15vw] sm:w-[7vw]"
+                        src="c1-assets/pet-couch.png" alt="">
                 </div>
                 <div class="sora-font">
-                    <span>4.3</span>
+                    <span class="flex items-center"><img class="w-[2vw] sm:w-[1.1vw] mr-[1vw]"
+                            src="c1-assets/rating.svg" alt=""><span>4.3</span></span>
                     <h3 class="font-bold">Parrots cage</h3>
                     <h5>$39.99</h5>
                 </div>
             </div>
-            <div class="bg-white rounded-[10px] flex border border-[#1111111e] p-[1vw] text-[1.1vw]">
+            <div
+                class="bg-white rounded-[10px] flex items-center border border-[#1111111e] px-[2vw] sm:px-[1vw] sm:py-[0.5vw] text-[2vw] sm:text-[0.9vw]">
                 <div>
-                    <img class="bg-[#FFF9F4] rounded-[10px] py-[1vw] px-[0.8vw] mr-[1vw]"
+                    <img class="bg-[#FFF9F4] rounded-[10px] py-[2vw] sm:py-[1vw] px-[2vw] sm:px-[0.8vw] mr-[2vw] sm:mr-[1vw] w-[15vw] sm:w-[7vw]"
                         src="c1-assets/bird-cartoon.png" alt="">
                 </div>
                 <div class="sora-font">
-                    <span>4.1</span>
+                    <span class="flex items-center"><img class="w-[2vw] sm:w-[1.1vw] mr-[1vw]"
+                            src="c1-assets/rating.svg" alt=""><span>4.1</span></span>
                     <h3 class="font-bold">Chicken Cage</h3>
                     <h5>$20.99</h5>
                 </div>
             </div>
-            <div class="bg-white rounded-[10px] flex border border-[#1111111e] p-[1vw] text-[1.1vw]">
+
+            <div
+                class="hidden bg-white rounded-[10px] sm:flex items-center border border-[#1111111e] px-[2vw] sm:px-[1vw] sm:py-[0.5vw] text-[2vw] sm:text-[0.9vw]">
                 <div>
-                    <img class="bg-[#FFF9F4] rounded-[10px] py-[1vw] px-[0.8vw] mr-[1vw]" src="c1-assets/pet-couch.png"
-                        alt="">
+                    <img class="bg-[#FFF9F4] rounded-[10px] py-[2vw] sm:py-[1vw] px-[2vw] sm:px-[0.8vw] mr-[2vw] sm:mr-[1vw] w-[15vw] sm:w-[7vw]"
+                        src="c1-assets/pet-couch.png" alt="">
                 </div>
                 <div class="sora-font">
-                    <span>4.0</span>
+                    <span class="flex items-center"><img class="w-[2vw] sm:w-[1.1vw] mr-[1vw]"
+                            src="c1-assets/rating.svg" alt=""><span>4.0</span></span>
                     <h3 class="font-bold">Iguanas cage</h3>
                     <h5>$49.99</h5>
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- trading pet section finish  -->
+
+    <!-- our fancy pet collection -->
+     <div><h2 class="text-[6vw] sm:text-[2.5vw] adlam-font mt-[4vw] sm:mt-[2vw] text-center sm:text-left">Our Fancy Collection</h2></div>
+    <section id="card3d">
+        <div class="container">
+            <div style="--i:1"><img src="c1-assets/fansy-cat.png" alt=""></div>
+            <div style="--i:2"><img src="c1-assets/fancy-dog-png-.png" alt=""></div>
+            <div style="--i:3"><img src="c1-assets/fancy cat-2.png" alt=""></div>
         </div>
     </section>
 
     <!-- low price section  -->
-    <section>
-        <h2 class="text-[2.5vw] adlam-font mb-[2vw]">Everyday low Price</h2>
-        <div class="grid grid-cols-[2fr_1.4fr] gap-[1vw] grid-rows-[30vw]">
-            <div class="bg-gradient-to-tl from-[#ACD2FD] to-[#F8CCFB] relative rounded-[10px]">
-                <div class="py-[7vw] pl-[7vw]">
-                    <p class="sora-font text-[1vw]/[3vw]">Under Price</p>
-                    <h4 class="adlam-font text-[1.8vw]/[4vw]">Pet Grooming Mitt</h4>
-                    <p class="sora-font text-[1vw]/[3vw]">(Easy Hair Removal)</p>
-                    <h1 class="adlam-font text-[2.5vw]">$7.99</h1>
+    <section class="max-w-sm sm:max-w-full mx-auto">
+        <h2 class="text-[6vw] sm:text-[2.5vw] adlam-font mb-[4vw] sm:mb-[2vw] text-center sm:text-left">Everyday Low
+            Price</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-[2fr_1.4fr] gap-[4vw] sm:gap-[1vw] sm:grid-rows-[30vw]">
+            <div class="bg-gradient-to-tl from-[#ACD2FD] to-[#F8CCFB] relative rounded-[10px] p-[5vw] sm:p-0">
+                <div class="sm:py-[7vw] pl-[5vw] sm:pl-[7vw]">
+                    <p class="hidden sm:block sora-font text-[4vw] sm:text-[1vw]/[3vw]">Under Price</p>
+                    <h4 class="adlam-font text-[5vw] sm:text-[1.8vw]/[4vw]">Pet Grooming Mitt</h4>
+                    <p class="hidden sm:block sora-font text-[4vw] sm:text-[1vw]/[3vw]">(Easy Hair Removal)</p>
+                    <h1 class="text-white sm:text-black adlam-font text-[6vw] sm:text-[2.5vw] mb-[30vw] sm:mb-0">$7.99
+                    </h1>
                 </div>
-                <img class="absolute bottom-[-1.8vw] right-0 w-[26vw]" src="c1-assets/cute-dog-mid.png" alt="">
+                <img class="absolute bottom-[-1.8vw] right-0 w-[40vw] sm:w-[26vw]" src="c1-assets/cute-dog-mid.png"
+                    alt="">
             </div>
-            <div class="bg-gradient-to-tl from-[#F9DF8A] to-[#FFF9F4] relative pt-[3.5vw] pl-[4vw] rounded-[10px]">
-                <h4 class="adlam-font text-[1.8vw]">T-Shirt for Dogs</h4>
-                <h1 class="adlam-font text-[2.5vw] text-[#FFDC26]">$7.99</h1> <img
-                    class="absolute bottom-[0vw] right-0 w-[20vw]" src="c1-assets/cute-pet-mid.png" alt="">
+            <div class="bg-gradient-to-tl from-[#F9DF8A] to-[#FFF9F4] relative rounded-[10px] pb-[30vw] sm:p-0">
+                <div class="pt-[5vw] sm:pt-[2vw] pl-[5vw] sm:pl-[4vw]">
+                    <h4 class="adlam-font text-[5vw] sm:text-[1.8vw]">T-Shirt for Dogs</h4>
+                    <h1 class="adlam-font text-[6vw] sm:text-[2.5vw] text-[#FFDC26]">$7.99</h1>
+                </div>
+                <img class="absolute bottom-[0vw] right-0 w-[35vw] sm:w-[20vw]" src="c1-assets/cute-pet-mid.png" alt="">
             </div>
         </div>
     </section>
+
     <!-- low price section finish  -->
 
     <!-- get news section  -->
     <section class="relative top-[15vw] z-1">
-        <div class="flex bg-[#FFF9F4] w-full py-[2vw] px-[5vw]">
-            <img class="w-[21vw]" src="c1-assets/cute-pet-mid.png" alt="">
-            <div class="ml-[5vw] mt-[4vw]">
-                <h2 class="text-[2.5vw] adlam-font mb-[2vw]">Get Awesome News!</h2>
-                <h4 class="text-[1.3vw] !font-[500] text-[#111111] sora-font">Exclusive training tips, ticks, product
-                    deals and more.</h4>
+        <div class="bg-[#FFF9F4] rounded-[10px] w-full py-[6vw] px-[5vw] sm:flex sm:py-[2vw] sm:px-[5vw]">
+            <img class="w-[50vw] sm:w-[21vw] mx-auto sm:mx-0" src="c1-assets/cute-pet-mid.png" alt="">
+            <div class="mt-[5vw] sm:mt-[4vw] sm:ml-[5vw] text-center sm:text-left">
+                <h2 class="text-[6vw] sm:text-[2.5vw] adlam-font mb-[4vw] sm:mb-[2vw]">Get Awesome News!</h2>
+                <h4 class="text-[4vw] sm:text-[1.3vw] !font-[500] text-[#111111] sora-font">
+                    Exclusive training tips, tricks, product deals, and more.
+                </h4>
                 <input type="email" placeholder="Your email..."
-                    class="input w-full max-w-[30vw] h-[4vw] bg-white my-[2.5vw] p-[3%]" /><br><button
-                    class="bg-[#FFDC26] my-[vw] rounded-[10px] px-[2vw] py-[0.5vw] text-[1.3vw]">Subscribe</button>
+                    class="input w-full max-w-[80vw] sm:max-w-[30vw] h-[10vw] sm:h-[4vw] bg-white my-[4vw] sm:my-[2.5vw] p-[3%] rounded-[5px]" />
+                <br>
+                <button
+                    class="bg-[#FFDC26] rounded-[10px] px-[6vw] sm:px-[2vw] py-[3vw] sm:py-[0.5vw] text-[4vw] sm:text-[1.3vw]">
+                    Subscribe
+                </button>
             </div>
         </div>
     </section>
     <!-- get news section finish  -->
 
     <!-- footer section -->
-    <footer class="box-border absolute -z-1 bg-[#ffdb268b] ml-[-10vw] pl-[10vw] pr-[10vw] pt-[22vw] pb-[8vw]">
-        <div class="grid grid-cols-2 gap-[7vw] mr-[16vw] relative">
+    <footer
+        class="box-border absolute -z-1 bg-[#ffdb268b] ml-[-2vw] sm:ml-[-10vw] pl-[5vw] sm:pl-[10vw] pr-[25vw] sm:pr-[10vw] pt-[18vw] sm:pt-[22vw] pb-[10vw] sm:pb-[8vw]">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-[5vw] sm:gap-[7vw] sm:mr-[16vw] relative text-left">
             <div>
-                <div class="flex items-center gap-[1vw] mb-[1.2vw] adlam-font">
-                    <img class="size-[3vw]" src="c1-assets/logo-footer.png" alt="">
-                    <h4 class="text-[1.7vw]">Browse<span class="text-[#FFDC26]">4</span>Pets</h4>
+                <div class="flex items-center gap-[3vw] sm:gap-[1vw] mb-[4vw] sm:mb-[1.2vw] justify-start adlam-font">
+                    <img class="size-[8vw] sm:size-[3vw]" src="c1-assets/logo-footer.png" alt="">
+                    <h4 class="text-[5vw] sm:text-[1.7vw]">Browse<span class="text-[#FFDC26]">4</span>Pets</h4>
                 </div>
-                <h4 class="text-[1.15vw] text-[#111111]">Discover a world of treats, toys, and essentials handpicked for your furry friends</h4>
+                <h4 class="text-[2vw] sm:text-[1.15vw] text-[#111111]">
+                    Discover a world of treats, toys, and essentials handpicked for your furry friends
+                </h4>
             </div>
-            <div class="text-[1.3vw]/[3.5vw] ml-[1vw] sora-font">
+            <div class="text-[2vw] sm:text-[1.3vw]/[2vw] mt-[4vw] sm:mt-0 sora-font sm:pl-[10vw]">
                 <h3>Find a Pet</h3>
                 <h3>Breeds</h3>
                 <h3>Contact us</h3>
             </div>
-            <div class="absolute bottom-0 right-[-15vw] sora-font">
-                <h4 class="text-[1.3vw]">Follow Us</h4>
-                <div class="flex gap-[1vw]">
-                    <img class="w-[2vw]" src="c1-assets/fb.svg" alt=""><img class="w-[2vw]" src="c1-assets/insta.svg" alt=""><img class="w-[2vw]" src="c1-assets/linkedin.svg" alt=""><img class="w-[2vw]" src="c1-assets/yt.svg" alt="">
+            <div class="mt-[6vw] sm:mt-0 sora-font text-left sm:absolute sm:bottom-0 sm:right-[-31%]">
+                <h4 class="text-[2vw] sm:text-[1.3vw]">Follow Us</h4>
+                <div class="flex justify-start gap-[3vw] sm:gap-[1vw] mt-[2vw]">
+                    <img class="w-[6vw] sm:w-[2vw]" src="c1-assets/fb.svg" alt="">
+                    <img class="w-[6vw] sm:w-[2vw]" src="c1-assets/insta.svg" alt="">
+                    <img class="w-[6vw] sm:w-[2vw]" src="c1-assets/linkedin.svg" alt="">
+                    <img class="w-[6vw] sm:w-[2vw]" src="c1-assets/yt.svg" alt="">
                 </div>
             </div>
         </div>
     </footer>
+
 </body>
 
 </html>
